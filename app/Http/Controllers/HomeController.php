@@ -94,5 +94,35 @@ class HomeController extends Controller
         return view('master.lang')->with($s);
     }
 
+     public function get_Airport()
+    {
+        $api = new API;
+        $hasil = $api->getCurl('flight_api/all_airport');
+        \App\Airport::whereRaw('id>0')->delete();
+        $data = array();
+        foreach ($hasil->all_airport->airport as $key) {
+            $arp = new \App\Airport;
+            $arp->airport_name = $key->airport_name;
+            $arp->airport_code = $key->airport_code;
+            $arp->location_name = $key->location_name;
+            $arp->country_id = $key->country_id;
+            $arp->save();
+            $data['id'][$arp->id]=$key->airport_code;
+        }
+            echo json_encode(
+                array(
+                    'status_code'=>200,
+                    'inserted_data'=>sizeof($data['id'])
+                    )
+                );
+        
+    }
+        
+    public function view_Airport()
+    {
+        $s['data'] = \App\Airport::all();
+        return view('master.airport')->with($s);
+    }
+
     
 }
