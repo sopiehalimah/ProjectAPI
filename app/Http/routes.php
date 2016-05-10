@@ -43,6 +43,8 @@ Route::get('master/airport', 'HomeController@view_Airport');
 
 Route::get('cronGetAirport', 'HomeController@get_Airport');
 
+Route::get('airline/flight',['as'=>'airline_flight','uses'=>'Reservasi@flight']);
+
 
 
 Route::auth();
