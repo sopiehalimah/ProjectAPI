@@ -43,8 +43,12 @@ Route::get('master/airport', 'HomeController@view_Airport');
 
 Route::get('cronGetAirport', 'HomeController@get_Airport');
 
-Route::get('airline/flight',['as'=>'airline_flight','uses'=>'Reservasi@flight']);
+Route::get('airline/flight',['as'=>'airline_flight',
+							'uses'=>'Reservasi@flight']);
 
+
+Route::post('airline/flight/search',['as'=>'ajax_search_flight',
+							'uses'=>'Reservasi@searchflight']);
 
 
 Route::auth();

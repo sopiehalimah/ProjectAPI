@@ -62,7 +62,7 @@
 				</select>
 			</div>
 			<div class="col s3">
-				<span class="btn">Search</span>
+				<span class="btn" onclick="search()">Search</span>
 				
 			</div>
 
@@ -72,7 +72,9 @@
 		
 	</div>
 </div>
-
+<div id="result">
+	
+</div>
 @endsection
 @section('footer')
 <script type="text/javascript">
@@ -87,5 +89,27 @@
 		}
 	}
 	check_type();
+
+	function search(){
+		$.ajax({
+			url:'{{route("ajax_search_flight")}}',
+			type:'POST',
+			data:{
+					from:$("#form").val(),
+					to:$("#to").val(),
+					type:$("#type").val(),
+					depart_date:$("#depart_date").val(),
+					return_date:$("#return_date").val(),
+					adult:$("#adult").val(),
+					child:$("#child").val(),
+					infant:$("#infant").val(),
+					_token:'{{csrf_token()}}'
+				},
+				success:function(data){
+					$("#result").html(data);
+				}
+		})
+	}
+
 </script>
 @endsection
