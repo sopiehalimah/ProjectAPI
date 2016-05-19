@@ -33,8 +33,8 @@
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="{{ url('https://code.jquery.com/jquery-2.1.1.min.js') }}"></script>
       <script type="text/javascript" src="{{ url('js/materialize.min.js') }}"></script>
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <link rel="stylesheet" href="{{url('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css')}}">
+      <script src="{{url('//code.jquery.com/ui/1.11.4/jquery-ui.js')}}"></script>
   
   
 

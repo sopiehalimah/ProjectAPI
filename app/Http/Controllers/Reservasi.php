@@ -43,11 +43,7 @@ class Reservasi extends Controller
     	$newapi = new API;
     	$newapi->getCurl('search/flight');
 
-    	$log = new \App\Logtrx;
-    	$log->request = json_encode($data);
-    	$log->token = session('token');
-    	$log->save();
-
+   
     	$sd = new \App\Search_Data;
     	$sd->depart_city = Input::get('from');
     	$sd->arrive_city = Input::get('to');
@@ -60,12 +56,24 @@ class Reservasi extends Controller
     	$sd->child = Input::get('child');
     	$sd->infant = Input::get('infant');
     	$sd->ver = $data['v'];
+
     	$sd->token = session('token');
     	$sd->save();
 
     	$hasil = $newapi->getCurl('search/flight',$data);
 
-    	echo "<pre>".print_r(($hasil),1)."</pre>";
+        echo json_encode($hasil);
+
+        $sd->result = json_encode($hasil);
+        $sd->save();
+
+        $log = new \App\Logtrx;
+        $log->request = json_encode($data);
+        $log->token = session('token');
+        $log->save();
+
+
+    	// echo "<pre>".print_r(($hasil),1)."</pre>";
 
     }
 }

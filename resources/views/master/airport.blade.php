@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a class="waves-effect waves-light btn" style="float: right;" href="{{url('/airline/flight')}}"><i class="material-icons right">library_add</i>Reservasi</a>
 <H4 style="text-align: center; margin-top: 50px;" >Airport</H4>
 <table class="highlight" style="width: 80%; margin: auto; cursor: pointer;">
 	<thead>
